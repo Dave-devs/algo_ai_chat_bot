@@ -43,9 +43,13 @@ class _ChatPageState extends State<ChatPage> {
 
   //Each time to start a speech recognition session
   Future<void> startListening() async {
-    await speechToText.listen(onResult: onSpeechResult);
+    await speechToText.listen(
+      onResult: onSpeechResult,
+      listenFor: const Duration(seconds: 10)
+    );
     setState(() {});
   }
+
 
   /*Manually stop the active speech recognition session.
   Note that there are also timeout that each platform enforces 
@@ -74,6 +78,8 @@ class _ChatPageState extends State<ChatPage> {
     await flutterTts.speak(speech);
     setState(() {});
   }
+
+  
 
   @override
   void dispose() {
@@ -163,7 +169,7 @@ class _ChatPageState extends State<ChatPage> {
             height: 20.h,
           ),
 
-          //Answer Container Box
+          //Text Answer Container Box
           FadeInRight(
             child: Visibility(
               visible: generatedImage == null,

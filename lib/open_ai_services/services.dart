@@ -3,6 +3,7 @@ import 'package:algo_ai_chat_bot/secret/secret_key.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+
 class OpenAIServices {
   List<Map<String, String>> messages = [];
   final dio = Dio();
@@ -14,6 +15,8 @@ class OpenAIServices {
       response = await dio.post(
         "https://api.openai.com/v1/chat/completions",
         options: Options(
+          sendTimeout: const Duration(seconds: 15),
+          receiveTimeout: const Duration(seconds: 15),
           headers: {
             "Content-Type": "application/json",
             "Authorization":
@@ -26,7 +29,7 @@ class OpenAIServices {
             {
               "role": "user",
               "content":
-                  "Does this message want to generate an AI image, picture, art, photo or anything similar? $prompt. Simply reply with a YES or No.",
+                  "Does this message want to generate an AI image, picture, art, photo or anything similar? $prompt. Simply reply with a YES or NO.",
             }
           ],
         }),
@@ -53,9 +56,10 @@ class OpenAIServices {
             final response = await isChatGPT(prompt);
             return response;
         }
-      } else {
-        return 'An internal error occurred';
       }
+      
+      return 'An internal error occurred';
+      
     } catch (e) {
       return e.toString();
     }
@@ -69,8 +73,7 @@ class OpenAIServices {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization":
-                "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
+            "Authorization": "Bearer $openAIApiKey", // Make sure you have openAIApiKey defined somewhere
           },
         ),
         data: jsonEncode({
@@ -89,9 +92,10 @@ class OpenAIServices {
         });
 
         return content;
-      } else {
-        return 'An internal error occurred';
       }
+
+      return 'An internal error occurred';
+      
     } catch (e) {
       return e.toString();
     }
@@ -104,11 +108,11 @@ class OpenAIServices {
       Response response;
       response = await dio.post(
         "https://api.openai.com/v1/images/generations",
+
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization":
-                "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
+            "Authorization": "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
           },
         ),
         data: jsonEncode({"prompt": prompt, "n": 1, "size": "1024x1024"}),
@@ -124,9 +128,10 @@ class OpenAIServices {
         });
 
         return imageUrl;
-      } else {
-        return 'An internal error occurred';
-      }
+      } 
+      
+      return 'An internal error occurred';
+
     } catch (e) {
       return e.toString();
     }
