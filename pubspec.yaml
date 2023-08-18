@@ -61,9 +61,9 @@ dependencies:
   bloc:
   flutter_bloc:
   dio: ^5.3.2
-  speech_to_text:
-  flutter_tts:
-  animate_do:
+  speech_to_text: ^6.3.0
+  flutter_tts: ^3.7.0
+  animate_do: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -93,8 +93,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/images/
-  - assets/sounds/
+    - assets/
+    - assets/sounds/
+    - assets/images/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

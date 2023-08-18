@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:algo_ai_chat_bot/.secret/secret_key.dart';
+import 'package:algo_ai_chat_bot/secret/secret_key.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -17,7 +17,7 @@ class OpenAIServices {
           headers: {
             "Content-Type": "application/json",
             "Authorization":
-                "Bearer $openAI_Api_Key", // Make sure you have openAI_Api_Key defined somewhere
+                "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
           },
         ),
         data: jsonEncode({
@@ -70,7 +70,7 @@ class OpenAIServices {
           headers: {
             "Content-Type": "application/json",
             "Authorization":
-                "Bearer $openAI_Api_Key", // Make sure you have openAI_Api_Key defined somewhere
+                "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
           },
         ),
         data: jsonEncode({
@@ -108,7 +108,7 @@ class OpenAIServices {
           headers: {
             "Content-Type": "application/json",
             "Authorization":
-                "Bearer $openAI_Api_Key", // Make sure you have openAI_Api_Key defined somewhere
+                "Bearer $openAIApiKey", // Make sure you have openAI_Api_Key defined somewhere
           },
         ),
         data: jsonEncode({"prompt": prompt, "n": 1, "size": "1024x1024"}),
